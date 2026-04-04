@@ -5,7 +5,8 @@ import AddSkillModal from './AddSkillModel';
 import RequestPointsModal from './RequestPointsModal';
 import KfuPointsGuide from './KfuPointsGuide';
 import PointsHistory from './PointsHistory';
-import { Search, BookOpen, Award, PlusCircle } from 'lucide-react';
+import ProjectCard from './ProjectCard';
+import { Search, BookOpen, Award, PlusCircle , FolderGit2 } from 'lucide-react';
 
 const SkillRecord = () => {
   const mySkills = [
@@ -15,7 +16,29 @@ const SkillRecord = () => {
     { name: "SQL & Databases", percentage: 78, level: "Intermediate", type: "Technical", endorsements: 8, acquired: "Feb 2025", lastUpdated: "Mar 2026" },
     { name: "Leadership", percentage: 92, level: "Expert", type: "Soft Skills", endorsements: 20, acquired: "Sep 2023", lastUpdated: "Mar 2026" },
   ];
-
+const myProjects = [
+    {
+      title: "Weather App",
+      description: "The website provides real-time weather information for any location worldwide using the OpenWeatherMap API.",
+      techStack: ["React", "Tailwind CSS", "Vite"],
+      githubLink: "https://github.com/Hussin067/Weather-App ",
+      icon: FolderGit2
+    },
+    {
+      title: "Random Movie Generator",
+      description: "A dynamic web application that generates random movie recommendations based on user genre preferences utilizing external database integrations.",
+      techStack: ["React", "TMDB API", "JavaScript"],
+      githubLink: "https://github.com/Hussin067/Movie-Finder",
+      icon: FolderGit2
+    },
+    {
+      title: "UAV Swarm Communication Simulation",
+      description: "Analyzed and simulated network performance and communication models for Unmanned Aerial Vehicle swarms.",
+      techStack: ["MATLAB", "Simulink", "ns-3"],
+      githubLink: "https://github.com/Hussin067/UAV-Swarm-Mesh-Communication",
+      icon: FolderGit2
+    }
+  ];
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('portfolio');
   const [isPointsModalOpen, setIsPointsModalOpen] = useState(false);
@@ -33,33 +56,41 @@ const SkillRecord = () => {
 
       <GeneralCard />
 
-      {/* --- THE NEW TAB SWITCHER --- */}
-      <div className="flex p-1 bg-slate-100 dark:bg-white/5 rounded-xl inline-flex w-full sm:w-auto">
+     
+      <div className="flex p-1 bg-muted rounded-xl inline-flex w-full sm:w-auto overflow-x-auto custom-scrollbar">
         <button 
           onClick={() => setActiveTab('portfolio')}
           className={`flex-1 sm:flex-none flex items-center justify-center gap-2 px-6 py-2.5 rounded-lg text-sm font-bold transition-all ${
             activeTab === 'portfolio' 
-              ? 'bg-white dark:bg-[#1e293b] text-blue-600 dark:text-blue-400 shadow-sm' 
-              : 'text-slate-500 dark:text-gray-400 hover:text-foreground'
+              ? 'bg-card text-blue-600 dark:text-blue-400 shadow-sm' 
+              : 'text-muted-foreground hover:text-foreground'
           }`}
         >
           <BookOpen size={16} /> My Portfolio
         </button>
         <button 
+          onClick={() => setActiveTab('projects')}
+          className={`flex-1 sm:flex-none flex items-center justify-center gap-2 px-6 py-2.5 rounded-lg text-sm font-bold transition-all ${
+            activeTab === 'projects' 
+              ? 'bg-card text-indigo-600 dark:text-indigo-400 shadow-sm' 
+              : 'text-muted-foreground hover:text-foreground'
+          }`}
+        >
+          <FolderGit2 size={16} /> Project Showcase
+        </button>
+        <button 
           onClick={() => setActiveTab('kfu-system')}
           className={`flex-1 sm:flex-none flex items-center justify-center gap-2 px-6 py-2.5 rounded-lg text-sm font-bold transition-all ${
             activeTab === 'kfu-system' 
-              ? 'bg-white dark:bg-[#1e293b] text-teal-600 dark:text-teal-400 shadow-sm' 
-              : 'text-slate-500 dark:text-gray-400 hover:text-foreground'
+              ? 'bg-card text-teal-600 dark:text-teal-400 shadow-sm' 
+              : 'text-muted-foreground hover:text-foreground'
           }`}
         >
           <Award size={16} /> KFU Points System
         </button>
       </div>
 
-      {/* --- CONDITIONAL RENDERING --- */}
       
-      {/* VIEW 1: Standard Skills Portfolio */}
       {activeTab === 'portfolio' && (
         <div className="mt-6 space-y-6 animate-in fade-in slide-in-from-bottom-2 duration-300">
           
@@ -96,13 +127,29 @@ const SkillRecord = () => {
       {/* VIEW 2: KFU Skills Record System */}
       {activeTab === 'kfu-system' && (
         <div className="mt-6 space-y-6 animate-in fade-in slide-in-from-bottom-2 duration-300">
-          {/* Replaced the static form with the PointsHistory card */}
+          
           <PointsHistory onRequestClick={() => setIsPointsModalOpen(true)} />
           <KfuPointsGuide />
         </div>
       )}
 
-      {/* Modals placed at the bottom so they overlay the entire screen properly */}
+      {/* VIEW 3: Project Showcase */}
+      {activeTab === 'projects' && (
+        <div className="mt-6 space-y-6 animate-in fade-in slide-in-from-bottom-2 duration-300">
+          <div className="pt-4 pb-2 border-b border-border">
+            <h3 className="text-lg font-bold text-foreground">Project Showcase</h3>
+            <p className="text-sm text-muted-foreground mt-1">Real-world applications</p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {myProjects.map((project, index) => (
+              <ProjectCard key={index} {...project} />
+            ))}
+          </div>
+        </div>
+      )}
+
+      
       <AddSkillModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
       <RequestPointsModal isOpen={isPointsModalOpen} onClose={() => setIsPointsModalOpen(false)} />
       

@@ -10,6 +10,7 @@ import {
   Sun,   
   Moon   
 } from 'lucide-react';
+import Logo from './Logo';
 import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = ({ userName = "User" }) => {
@@ -44,13 +45,12 @@ const Navbar = ({ userName = "User" }) => {
       <div className="flex items-center justify-between px-4 md:px-6 py-3">
         
       
-        <div className="flex items-center gap-2">
-          <div className="p-2 bg-blue-600 rounded-lg shadow-lg shadow-blue-600/20">
-            <LayoutDashboard size={20} className="text-white" />
-          </div>
-          <div>
-            <h1 className="text-lg font-bold tracking-tight leading-none text-foreground">Mahary</h1>
-            <p className="text-[10px] text-muted-foreground font-medium">Digital Career Advisor</p>
+        <div className="flex items-center gap-3">
+          <Logo className="w-10 h-10 shadow-lg shadow-blue-500/20 rounded-xl" />
+          
+          <div className="flex flex-col justify-center">
+            <h1 className="text-xl font-bold tracking-tight leading-none text-foreground">Mahary</h1>
+            <p className="text-[10px] text-teal-600 dark:text-teal-400 font-bold uppercase tracking-wider mt-0.5">Digital Career Advisor</p>
           </div>
         </div>
 
@@ -82,7 +82,7 @@ const Navbar = ({ userName = "User" }) => {
 
           <div className="hidden md:block h-6 w-[1px] bg-border mx-1" />
 
-          {/* Profile Badge */}
+          
           <button className="flex items-center gap-2 pl-1 pr-3 py-1 bg-blue-50 dark:bg-blue-600/10 border border-blue-200 dark:border-blue-500/20 rounded-full hover:bg-blue-100 dark:hover:bg-blue-600/20 transition-all ml-1">
             <div className="w-7 h-7 rounded-full bg-blue-600 flex items-center justify-center font-bold text-xs text-white ring-2 ring-blue-600/20">
               {initial}
