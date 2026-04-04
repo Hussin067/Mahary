@@ -72,8 +72,8 @@ const Activities = () => {
       
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h2 className="text-3xl font-bold text-slate-900 dark:text-white">Available Activities</h2>
-          <p className="text-gray-500 dark:text-gray-400 mt-1">Join university events and community volunteering</p>
+          <h2 className="text-3xl font-bold text-foreground">Available Activities</h2>
+          <p className="text-muted-foreground mt-1">Join university events and community volunteering</p>
         </div>
         
         <div className="flex gap-3 w-full md:w-auto">
@@ -82,10 +82,10 @@ const Activities = () => {
             <input 
               type="text" 
               placeholder="Search events..." 
-              className="w-full bg-white dark:bg-[#1e293b] border border-gray-200 dark:border-white/10 rounded-xl pl-10 pr-4 py-2.5 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+              className="w-full bg-card border border-border rounded-xl pl-10 pr-4 py-2.5 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-colors duration-300"
             />
           </div>
-          <button className="flex items-center gap-2 bg-white dark:bg-[#1e293b] border border-gray-200 dark:border-white/10 px-4 py-2.5 rounded-xl text-sm font-medium text-slate-700 dark:text-gray-300 hover:bg-slate-50 dark:hover:bg-white/5 transition-colors">
+          <button className="flex items-center gap-2 bg-card border border-border px-4 py-2.5 rounded-xl text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted transition-all duration-300 active:scale-95">
             <Filter size={16} /> Filter
           </button>
         </div>
@@ -101,7 +101,7 @@ const Activities = () => {
             <p className="text-blue-100 text-sm">You have 2 recommended events this week.</p>
           </div>
         </div>
-        <button className="bg-white text-blue-600 px-5 py-2.5 rounded-xl font-bold text-sm hover:bg-blue-50 active:scale-[0.98] transition-all whitespace-nowrap">
+        <button className="bg-background text-blue-600 px-5 py-2.5 rounded-xl font-bold text-sm hover:opacity-90 active:scale-95 transition-all duration-300 whitespace-nowrap shadow-md">
           View My Calendar
         </button>
       </div>

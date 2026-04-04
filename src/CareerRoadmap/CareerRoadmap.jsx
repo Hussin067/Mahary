@@ -40,12 +40,12 @@ const CareerRoadmap = () => {
       
       <div className="flex justify-between items-center flex-col md:flex-row md:items-center">
         <div>
-          <h2 className="text-3xl font-bold text-slate-900 dark:text-white">Career Roadmap</h2>
-          <p className="text-gray-500 dark:text-gray-400 mt-1">Plan and track your professional journey</p>
+          <h2 className="text-3xl font-bold text-foreground">Career Roadmap</h2>
+          <p className="text-muted-foreground mt-1">Plan and track your professional journey</p>
         </div>
         <button 
           onClick={() => setIsAddGoalModalOpen(true)}
-          className="bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-5 py-2.5 rounded-xl font-bold text-sm hover:opacity-90 active:scale-[0.98] transition-all">
+          className="bg-foreground text-background px-5 py-2.5 rounded-xl font-bold text-sm hover:opacity-90 hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-300">
           + Add New Goal
         </button>
       </div>
@@ -80,13 +80,13 @@ const CareerRoadmap = () => {
 };
 
 const RoadmapStat = ({ icon, value, label, bgColor }) => (
-  <div className="bg-white dark:bg-[#1e293b] border border-gray-200 dark:border-white/5 p-6 rounded-2xl flex items-center gap-4 shadow-sm dark:shadow-none">
+  <div className="bg-card border border-border p-6 rounded-2xl flex items-center gap-4 shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
     <div className={`p-4 rounded-xl ${bgColor}`}>
       {icon}
     </div>
     <div>
-      <h3 className="text-3xl font-bold text-slate-900 dark:text-white leading-none">{value}</h3>
-      <p className="text-gray-500 dark:text-gray-400 text-sm mt-1 font-medium">{label}</p>
+      <h3 className="text-3xl font-bold text-foreground leading-none">{value}</h3>
+      <p className="text-muted-foreground text-sm mt-1 font-medium">{label}</p>
     </div>
   </div>
 );

@@ -1,8 +1,11 @@
-import React , {useState} from 'react';
+import React, { useState } from 'react';
 import GeneralCard from './GeneralCard';
 import SkillItem from './SkillItem';
 import AddSkillModal from './AddSkillModel';
-import { Search } from 'lucide-react';
+import RequestPointsModal from './RequestPointsModal';
+import KfuPointsGuide from './KfuPointsGuide';
+import PointsHistory from './PointsHistory';
+import { Search, BookOpen, Award } from 'lucide-react';
 
 const SkillRecord = () => {
   const mySkills = [
@@ -14,57 +17,93 @@ const SkillRecord = () => {
   ];
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState('portfolio');
+  const [isPointsModalOpen, setIsPointsModalOpen] = useState(false);
 
   return (
-    <div className="p-4 sm:p-6 md:p-8  max-w-7xl mx-auto space-y-8 animate-in fade-in duration-500">
+    <div className="p-4 sm:p-6 md:p-8 max-w-7xl mx-auto space-y-8 animate-in fade-in duration-500">
       
-      
-      <div className="flex justify-between items-center flex-col md:flex-row md:items-center">
+      {/* Page Header */}
+      <div className="flex justify-between items-center flex-col md:flex-row md:items-center gap-4">
         <div>
-          <h2 className="text-3xl font-bold text-slate-900 dark:text-white">Skills Record</h2>
-          <p className="text-gray-500 dark:text-gray-400 mt-1">Track and showcase your abilities</p>
+          <h2 className="text-3xl font-bold text-foreground">Skills Record</h2>
+          <p className="text-muted-foreground mt-1">Track and showcase your abilities</p>
         </div>
         <button 
           onClick={() => setIsModalOpen(true)}
-          className="bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-5 py-2.5 rounded-xl font-bold text-sm hover:opacity-90 active:scale-[0.98] transition-all">
+          className="bg-foreground text-background px-5 py-2.5 rounded-xl font-bold text-sm hover:opacity-90 hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-300">
           + Add New Skill
         </button>
       </div>
 
       <GeneralCard />
 
-      <div className="mt-12 space-y-6">
-{/*         
-        <div className="relative max-w-2xl">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
-          <input 
-            type="text" 
-            placeholder="Search skills..." 
-            className="w-full bg-white dark:bg-[#1e293b] border border-gray-200 dark:border-white/10 rounded-2xl pl-12 pr-4 py-4 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all shadow-sm dark:shadow-none"
-          />
-        </div> */}
-        <div className="pt-4 pb-2 border-b border-gray-200 dark:border-white/5">
-          <h3 className="text-lg font-bold text-slate-900 dark:text-white">Your Skills Portfolio</h3>
-          <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">{mySkills.length} skills found</p>
-        </div>
-
-        <div className="space-y-4">
-          {mySkills.map((skill, index) => (
-            <SkillItem 
-              key={index}
-              name={skill.name}
-              percentage={skill.percentage}
-              level={skill.level}
-              type={skill.type}
-              endorsements={skill.endorsements}
-              acquired={skill.acquired}
-              lastUpdated={skill.lastUpdated}
-            />
-          ))}
-        </div>
-
+      {/* --- THE NEW TAB SWITCHER --- */}
+      <div className="flex p-1 bg-slate-100 dark:bg-white/5 rounded-xl inline-flex w-full sm:w-auto">
+        <button 
+          onClick={() => setActiveTab('portfolio')}
+          className={`flex-1 sm:flex-none flex items-center justify-center gap-2 px-6 py-2.5 rounded-lg text-sm font-bold transition-all ${
+            activeTab === 'portfolio' 
+              ? 'bg-white dark:bg-[#1e293b] text-blue-600 dark:text-blue-400 shadow-sm' 
+              : 'text-slate-500 dark:text-gray-400 hover:text-foreground'
+          }`}
+        >
+          <BookOpen size={16} /> My Portfolio
+        </button>
+        <button 
+          onClick={() => setActiveTab('kfu-system')}
+          className={`flex-1 sm:flex-none flex items-center justify-center gap-2 px-6 py-2.5 rounded-lg text-sm font-bold transition-all ${
+            activeTab === 'kfu-system' 
+              ? 'bg-white dark:bg-[#1e293b] text-teal-600 dark:text-teal-400 shadow-sm' 
+              : 'text-slate-500 dark:text-gray-400 hover:text-foreground'
+          }`}
+        >
+          <Award size={16} /> KFU Points System
+        </button>
       </div>
+
+      {/* --- CONDITIONAL RENDERING --- */}
+      
+      {/* VIEW 1: Standard Skills Portfolio */}
+      {activeTab === 'portfolio' && (
+        <div className="mt-6 space-y-6 animate-in fade-in slide-in-from-bottom-2 duration-300">
+          
+          <div className="pt-4 pb-2 border-b border-border">
+            <h3 className="text-lg font-bold text-foreground">Your Skills Portfolio</h3>
+            <p className="text-sm text-muted-foreground mt-1">{mySkills.length} skills found</p>
+          </div>
+
+          <div className="space-y-4">
+            {mySkills.map((skill, index) => (
+              <SkillItem 
+                key={index}
+                name={skill.name}
+                percentage={skill.percentage}
+                level={skill.level}
+                type={skill.type}
+                endorsements={skill.endorsements}
+                acquired={skill.acquired}
+                lastUpdated={skill.lastUpdated}
+              />
+            ))}
+          </div>
+
+        </div>
+      )}
+
+      {/* VIEW 2: KFU Skills Record System */}
+      {activeTab === 'kfu-system' && (
+        <div className="mt-6 space-y-6 animate-in fade-in slide-in-from-bottom-2 duration-300">
+          {/* Replaced the static form with the PointsHistory card */}
+          <PointsHistory onRequestClick={() => setIsPointsModalOpen(true)} />
+          <KfuPointsGuide />
+        </div>
+      )}
+
+      {/* Modals placed at the bottom so they overlay the entire screen properly */}
       <AddSkillModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      <RequestPointsModal isOpen={isPointsModalOpen} onClose={() => setIsPointsModalOpen(false)} />
+      
     </div>
   );
 };

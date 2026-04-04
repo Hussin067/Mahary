@@ -10,7 +10,7 @@ function App() {
   const [userName, setUserName] = useState("Hassan");
   return (
     <Router>
-      <div className="min-h-screen bg-oklch(98.5% 0 0) dark:bg-[#161e2e] transition-colors duration-300">
+      <div className="min-h-screen bg-background text-foreground transition-colors duration-500">
         
         <Navbar userName={userName} />
         

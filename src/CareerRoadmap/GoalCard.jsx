@@ -3,46 +3,46 @@ import { Calendar, CheckCircle2, Circle } from 'lucide-react';
 
 const GoalCard = ({ title, tag, tagColor, targetDate, progress, milestones }) => {
   return (
-    <div className="bg-white dark:bg-[#1e293b] border border-gray-200 dark:border-white/5 rounded-2xl p-6 shadow-sm dark:shadow-none mb-6">
+    <div className="bg-card border border-border rounded-2xl p-6 shadow-sm mb-6 transition-all duration-300 hover:shadow-lg">
       
     
       <div className="flex justify-between items-start mb-4">
         <div>
           <div className="flex items-center gap-3 mb-2">
-            <h3 className="text-xl font-bold text-slate-900 dark:text-white">{title}</h3>
+            <h3 className="text-xl font-bold text-foreground">{title}</h3>
             <span className={`text-[10px] font-bold px-2.5 py-1 rounded-full ${tagColor}`}>
               {tag}
             </span>
           </div>
-          <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 font-medium">
+          <div className="flex items-center gap-2 text-sm text-muted-foreground font-medium">
             <Calendar size={16} />
             <span>Target: {targetDate}</span>
           </div>
         </div>
         
         <div className="text-right">
-          <div className="text-2xl font-bold text-slate-900 dark:text-white mb-1">{progress}%</div>
-          <div className="text-xs text-gray-500 dark:text-gray-400">Complete</div>
+          <div className="text-2xl font-bold text-foreground mb-1">{progress}%</div>
+          <div className="text-xs text-muted-foreground">Complete</div>
         </div>
       </div>
 
       
-      <div className="h-2 w-full bg-slate-100 dark:bg-white/5 rounded-full overflow-hidden mb-6">
+      <div className="h-2 w-full bg-muted rounded-full overflow-hidden mb-6">
         <div 
-          className="h-full bg-slate-800 dark:bg-white rounded-full transition-all duration-1000" 
+          className="h-full bg-foreground rounded-full transition-all duration-1000" 
           style={{ width: `${progress}%` }}
         ></div>
       </div>
 
      
       <div>
-        <p className="text-xs text-gray-500 dark:text-gray-400 font-medium mb-3 uppercase tracking-wider">Milestones</p>
+        <p className="text-xs text-muted-foreground font-medium mb-3 uppercase tracking-wider">Milestones</p>
         <div className="space-y-3">
           {milestones.map((milestone, index) => (
             <div 
               key={index}
              
-              className="bg-slate-50 dark:bg-white border border-gray-200 dark:border-transparent rounded-xl p-4 flex items-center gap-3"
+              className="bg-background border border-border/50 rounded-xl p-4 flex items-center gap-3 hover:bg-muted transition-colors duration-300"
             >
               {milestone.isCompleted ? (
                 <CheckCircle2 size={20} className="text-green-500 shrink-0" />
@@ -51,12 +51,12 @@ const GoalCard = ({ title, tag, tagColor, targetDate, progress, milestones }) =>
               )}
               
               <div className="flex-1">
-                <span className={`text-sm font-semibold ${milestone.isCompleted ? 'line-through text-gray-500' : 'text-slate-900'}`}>
+                <span className={`text-sm font-semibold ${milestone.isCompleted ? 'line-through text-muted-foreground' : 'text-foreground'}`}>
                   {milestone.text}
                 </span>
                 
                 {milestone.subText && !milestone.isCompleted && (
-                  <p className="text-xs text-gray-500 mt-1">{milestone.subText}</p>
+                  <p className="text-xs text-muted-foreground mt-1">{milestone.subText}</p>
                 )}
               </div>
             </div>

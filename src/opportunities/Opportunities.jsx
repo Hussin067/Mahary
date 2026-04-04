@@ -80,15 +80,15 @@ const Opportunities = () => {
           <input 
             type="text" 
             placeholder="Search opportunities in KSA..." 
-            className="w-full bg-white dark:bg-[#1e293b] border border-gray-200 dark:border-white/10 rounded-xl pl-12 pr-4 py-3 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50 shadow-sm dark:shadow-none"
+            className="w-full bg-card border border-border rounded-xl pl-12 pr-4 py-3 text-foreground focus:outline-none focus:ring-2 focus:ring-blue-500/50 shadow-sm transition-colors duration-300"
           />
         </div>
         
         <div className="flex gap-3">
-          <button className="flex items-center gap-2 bg-white dark:bg-[#1e293b] border border-gray-200 dark:border-white/10 px-4 py-3 rounded-xl text-sm font-medium text-slate-700 dark:text-gray-300 hover:bg-slate-50 dark:hover:bg-white/5 transition-colors shadow-sm dark:shadow-none">
+          <button className="flex items-center gap-2 bg-card border border-border px-4 py-3 rounded-xl text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted transition-all duration-300 shadow-sm hover:shadow-md active:scale-95">
             Best Match <ChevronDown size={16} />
           </button>
-          <button className="flex items-center gap-2 bg-white dark:bg-[#1e293b] border border-gray-200 dark:border-white/10 px-4 py-3 rounded-xl text-sm font-medium text-slate-700 dark:text-gray-300 hover:bg-slate-50 dark:hover:bg-white/5 transition-colors shadow-sm dark:shadow-none">
+          <button className="flex items-center gap-2 bg-card border border-border px-4 py-3 rounded-xl text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted transition-all duration-300 shadow-sm hover:shadow-md active:scale-95">
             <Filter size={16} /> Filters
           </button>
         </div>
